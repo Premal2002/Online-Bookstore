@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../../customer';
 import { CustomerService } from '../../Services/customer-service.service'; 
 import Swal from 'sweetalert2';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-register-customer',
@@ -10,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrl: './register-customer.component.css'
 })
 export class RegisterCustomerComponent implements OnInit {
+  passwordVisible: boolean = false;
   cPass : string = "";
   customer = new Customer(0,"","","","","");
   constructor( private route: ActivatedRoute, private router: Router,private customerService : CustomerService) { }
@@ -31,9 +34,38 @@ export class RegisterCustomerComponent implements OnInit {
         confirmButtonText: 'Cool'
       });
         // console.log(data);
+        sessionStorage.setItem('customerPass', data.password);
+        sessionStorage.setItem('customerEmail', data.email);
         this.router.navigate(['']);
+      },
+      (error) => {
+        if (error.status === 500) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Email-Id already registered.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: 'An unexpected error occurred.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        }
       }
     );
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (this.passwordVisible) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
   }
 }
 

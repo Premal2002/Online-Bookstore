@@ -23,11 +23,10 @@
                         <!-- Table headers -->
                         <thead>
                             <tr>
-                                <th scope="col">Contact ID</th>
-                                <th scope="col">Contact Name</th>
-                                <th scope="col">Contact Email</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Is Resovled</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Customer Email</th>
+                                <th scope="col">Customer Query</th>
+                                <th scope="col">Resovled?</th>
                                 <th scope="col">Resolve</th>
                             </tr>
                         </thead>
@@ -35,7 +34,6 @@
                             <!-- Table body with ngFor and filtering -->
                             <tr *ngFor="let query of contactList | paginate : {itemsPerPage : count,currentPage : p}">
                                 <!-- Input fields for each query property -->
-                                <td><input type="text" class="form-control" [(ngModel)]="query.contact_id" [readonly]="true"></td>
                                 <td><input type="text" class="form-control" [(ngModel)]="query.contact_name" [readonly]="true"></td>
                                 <td><input type="text" class="form-control" [(ngModel)]="query.contact_email" [readonly]="true"></td>
                                 <td><textarea class="form-control" [(ngModel)]="query.message" [readonly]="true"></textarea></td>

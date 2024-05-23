@@ -17,7 +17,9 @@ public class Contact
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "contact_id" )
 	private int contact_id;
+	@Column(length = 50)
 	private String contact_name; 
+	@Column(length = 50)
 	private String contact_email;
 	private String message;
 	private boolean isActive;

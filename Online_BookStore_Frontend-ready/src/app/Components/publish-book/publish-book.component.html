@@ -38,23 +38,14 @@
               <small *ngIf="bookForm.controls['bCategory'].invalid && bookForm.controls['bCategory'].touched" class="text-danger">Category is required.</small>
             </div>
             <div class="form-group">
-              <label for="bStatus">Status</label>
-              <select class="form-control" id="bStatus" [(ngModel)]="book.bStatus" name="bStatus" required>
-                <option value="" disabled selected>Select Status</option>
-                <option value="available">Available</option>
-                <option value="out of stock">Out of Stock</option>
-              </select>
-              <small *ngIf="bookForm.controls['bStatus'].invalid && bookForm.controls['bStatus'].touched" class="text-danger">Status is required.</small>
-            </div>
-            <div class="form-group">
               <label for="bPrice">Price</label>
-              <input type="number" class="form-control" id="bPrice" name="bPrice" [(ngModel)]="book.bPrice" placeholder="Enter Price" required min="0">
-              <small *ngIf="bookForm.controls['bPrice'].invalid && bookForm.controls['bPrice'].touched" class="text-danger">Price is required and cannot be negative.</small>
+              <input type="number" class="form-control" id="bPrice" name="bPrice" [(ngModel)]="book.bPrice" placeholder="Enter Price" required min="0" max="2000">
+              <small *ngIf="bookForm.controls['bPrice'].invalid && bookForm.controls['bPrice'].touched" class="text-danger">Price is required and must be in range(0-2000).</small>
             </div>
             <div class="form-group">
               <label for="bQuantity">Quantity</label>
-              <input type="number" class="form-control" id="bQuantity" name="bQuantity" [(ngModel)]="book.bQuantity" placeholder="Enter Quantity" required min="0">
-              <small *ngIf="bookForm.controls['bQuantity'].invalid && bookForm.controls['bQuantity'].touched" class="text-danger">Quantity is required and cannot be negative.</small>
+              <input type="number" class="form-control" id="bQuantity" name="bQuantity" [(ngModel)]="book.bQuantity" placeholder="Enter Quantity" required min="5" max="100">
+              <small *ngIf="bookForm.controls['bQuantity'].invalid && bookForm.controls['bQuantity'].touched" class="text-danger">Quantity is required and cannot be less than 5 or greater than 100.</small>
             </div>
             <div class="form-group">
               <label for="bImgPath">Image Path</label>

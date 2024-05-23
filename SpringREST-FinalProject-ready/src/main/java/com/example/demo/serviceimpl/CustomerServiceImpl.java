@@ -33,6 +33,7 @@ public class CustomerServiceImpl implements CustomerService
 		customer1.setCustomer_address(customer.getCustomer_address());
 		customer1.setCustomer_contact(customer.getCustomer_contact());
 		customer1.setEmail(customer.getEmail());
+		customer1.setPassword(customer.getPassword());
 		
 		return customerrepository.save(customer1);	}
 

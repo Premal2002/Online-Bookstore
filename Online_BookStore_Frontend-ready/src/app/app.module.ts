@@ -32,12 +32,7 @@ import { ManageOrdersComponent } from './Components/manage-orders/manage-orders.
 import { ManageQueriesComponent } from './Components/manage-queries/manage-queries.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-
-
-
-
-
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,10 +61,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ManageBooksComponent,
     ManageOrdersComponent,
     ManageQueriesComponent,
-
-    
-
-   
   ],
   imports: [
     BrowserModule,
@@ -79,7 +70,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     SweetAlert2Module.forRoot(),
     NgxPaginationModule,
-   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,7 +25,7 @@ public class Cart {
 	@Column(name = "book_id")
 	private int bId;
 	
-	@Column(name = "book_title")
+	@Column(name = "book_title",length = 50)
 	private String bTitle;
 	
 	@Column(name = "book_desc")

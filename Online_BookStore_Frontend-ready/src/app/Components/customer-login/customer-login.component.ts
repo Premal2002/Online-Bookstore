@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
   styleUrl: './customer-login.component.css'
 })
 export class CustomerLoginComponent implements OnInit {
-  customer = new Customer(0,"","","","","");
+  email : string = sessionStorage.getItem('customerEmail');
+  password : string = sessionStorage.getItem('customerPass');
+  customer = new Customer(0,"","","",this.email,this.password);
   
   constructor(public hardcodeAuthenticationService: HardcodeAuthenticationService, private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void { }
@@ -42,7 +44,7 @@ export class CustomerLoginComponent implements OnInit {
           });
           // this.accountId = Object.values(Response)[0];
           // console.log(Response);
-        
+          sessionStorage.removeItem('customerPass');
           sessionStorage.setItem('customerName', customer1.customer_name);
           sessionStorage.setItem('customerEmail', this.customer.email);
           sessionStorage.setItem('customerId',customer1.cust_id.toString());
@@ -64,6 +66,18 @@ export class CustomerLoginComponent implements OnInit {
 
   publisherLogin(){
     this.router.navigate(['publisherLogin']);
+  }
+
+  passwordVisible: boolean = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (this.passwordVisible) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
   }
 
 }

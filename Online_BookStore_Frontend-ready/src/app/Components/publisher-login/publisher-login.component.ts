@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
   styleUrl: './publisher-login.component.css'
 })
 export class PublisherLoginComponent implements OnInit{
-  publisher : Publisher = new Publisher(0,"","","","",false);
+  email : string = sessionStorage.getItem('publisherEmail');
+  // password : string = sessionStorage.getItem('publisherPass');
+  publisher : Publisher = new Publisher(0,"",this.email,"","",false);
 
   constructor(public hardcodeAuthenticationService: HardcodeAuthenticationService, private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void { }
@@ -41,6 +43,7 @@ export class PublisherLoginComponent implements OnInit{
             confirmButtonText: 'Okay'
           });
           // this.accountId = Object.values(Response)[0];
+         
           sessionStorage.setItem('publisherName', publisher1.pName);
           sessionStorage.setItem('publisherEmail', publisher1.email);
           sessionStorage.setItem('publisherId', publisher1.pId.toString());
@@ -58,6 +61,22 @@ export class PublisherLoginComponent implements OnInit{
 
   publisherRegister(){
     this.router.navigate(['registerPublisher']);
+  }
+
+  customerLogin(){
+    this.router.navigate(['']);
+  }
+
+  passwordVisible: boolean = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (this.passwordVisible) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
   }
 
 }

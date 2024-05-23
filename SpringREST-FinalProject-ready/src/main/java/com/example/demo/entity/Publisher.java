@@ -14,15 +14,15 @@ public class Publisher {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="publisher_id")
 	private int pId;
-	@Column(name="publisher_name")
+	@Column(name="publisher_name",length = 50)
 	private String pName;
-	@Column(name="publisher_email")
+	@Column(name="publisher_email",length = 50,unique = true)
 	private String email;
-	@Column(name="publisher_password")
+	@Column(name="publisher_password",length = 50)
 	private String password;
-	@Column(name="publisher_country")
+	@Column(name="publisher_country",length = 50)
 	private String pCountry;
-	@Column(name="publisher_status")
+	@Column(name="publisher_status",length = 50)
 	private boolean pStatus;
 	
 	public Publisher(int pId, String pName, String email, String password, String pCountry,boolean pStatus) {

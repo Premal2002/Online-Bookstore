@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Embeddable
 @Entity
 @Table(name="books_table")
 public class Book {
@@ -20,13 +19,13 @@ public class Book {
 	private int bId;
 	@Column(name="publisher_id")
 	private int pId;
-	@Column(name="book_title")
+	@Column(name="book_title",unique = true,length = 80)
 	private String bTitle;
 	@Column(name="book_desc")
 	private String bDesc;
-	@Column(name="book_cat")
+	@Column(name="book_cat",length = 50)
 	private String bCategory;
-	@Column(name="book_status")
+	@Column(name="book_status",length = 50)
 	private String bStatus;
 	@Column(name="book_price")
 	private float bPrice;

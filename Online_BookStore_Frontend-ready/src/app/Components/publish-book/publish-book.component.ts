@@ -13,7 +13,7 @@ export class PublishBookComponent implements OnInit {
   getPid : any = sessionStorage.getItem("publisherId");
   pId : number = 0;
 
-  book : Book = new Book(0,0,"","","","",0,0,"",0);
+  book : Book = new Book(0,0,"","","","available",0,5,"",0);
   
   constructor(private bookService : BookService,private router:Router){}
 
@@ -38,6 +38,23 @@ export class PublishBookComponent implements OnInit {
       });
         // console.log(data);
         this.router.navigate(['publisherDashboard',this.pId]);
+      },
+      (error) => {
+        if (error.status === 500) {
+          Swal.fire({
+            title: 'Book with this name is already published.',
+            text: 'Please use different book name',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: 'An unexpected error occurred.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        }
       }
     );
    }

@@ -28,7 +28,7 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	//update book sold count
 	
 	//search book
-	@Query(value = "SELECT * FROM books_table WHERE book_cat LIKE CONCAT('%', ?1, '%') OR book_title LIKE CONCAT('%', ?1, '%')",nativeQuery = true)
+	@Query(value = "SELECT * FROM books_table WHERE book_cat LIKE CONCAT('%', ?1, '%') OR book_title LIKE CONCAT('%', ?1, '%') ORDER BY CASE WHEN book_title = ?1 THEN 0 ELSE 1 END",nativeQuery = true)
 	public List<Book> searchBook(String bTitle);
 	
 	//get books_sold by bid

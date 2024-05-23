@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 
 @Entity
@@ -18,10 +19,15 @@ public class Customer
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cust_id;
 
+	@Column(length = 50)
 	private String customer_name;
+	@Column(length = 50)
 	private String customer_address;
+	@Column(length = 10)
 	private String customer_contact;
+	@Column(unique = true,length = 50)
 	private String email;
+	@Column(length = 50)
 	private String password;
 	
 	public Customer(int cust_id, String customer_name, String customer_address, String customer_contact,

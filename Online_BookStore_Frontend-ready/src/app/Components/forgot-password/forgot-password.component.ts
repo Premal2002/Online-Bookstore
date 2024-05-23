@@ -58,8 +58,8 @@ customer : Customer = new Customer(0,"","","","","");
         this.otpSent = true;
         this.startTimer();
         this.email.setTo= this.forgotPasswordForm.get('email')?.value;
-        this.email.setSubject = "Online Book Store OTP";
-        this.email.setText = "Your one time OTP is : "+ this.otp;
+        this.email.setSubject = "Books Haven OTP(One Time Password)";
+        this.email.setText = "Dear valued customer,\n\nThank you for choosing Books Haven! Your one-time OTP (One-Time Password) for accessing our online bookstore is: " + this.otp + ". Please use this OTP to complete your transaction securely.\n\nIf you did not request this OTP, please ignore this message.\n\nHappy reading!\n\nSincerely,\nThe Books Haven Team";
   
         this.otpService.sendOTP(this.email).subscribe((data:any)=>{
         });
@@ -108,6 +108,7 @@ customer : Customer = new Customer(0,"","","","","");
       this.customer.password=this.forgotPasswordForm.get('password')?.value;
       this.customerService.updateCustomer(this.customer.cust_id,this.customer).subscribe((data:any)=>{
         if(data!=null){
+          console.log(data);
           Swal.fire({
             title: 'Your Password updated successfully.',
             icon: 'success',

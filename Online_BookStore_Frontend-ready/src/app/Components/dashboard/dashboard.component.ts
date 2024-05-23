@@ -33,34 +33,18 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   constructor( public hardcodeAuthenticationService: HardcodeAuthenticationService, private route: ActivatedRoute, private router: Router,private bookService : BookService,private customerService : CustomerService) { }
   
-  ngOnInit(): void {
+  ngOnInit(): void { 
 
-    //get all books
-    this.bookService.getAllBooks().subscribe((data:any)=>{
-      if(data!=null){
-        this.bList = data;
-        // console.log(typeof data);
-      }else{
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'There are no books in store!',
-        });
-      }
-    }); 
-  }
-
-  ngAfterViewInit(): void {
     let query = this.route.snapshot.params['cID'];
     if(this.containsOnlyNumbers(query)==false){
       this.customerService.searchBook(query).subscribe((data:any)=>{
         if(data.length>0){
-        this.bList=data;
-        // console.log(this.bList);
-        for(let book of this.bList){
-          this.currentCategory = "You searched : "+book.bTitle;
-          break;
-        }
+          this.bList = data;
+          console
+        // for(let book of this.bList){
+          this.currentCategory = "You searched : "+this.bList[0].bTitle;
+        //   break;
+        // }
       }else{
         Swal.fire({
           icon: 'error',
@@ -72,7 +56,25 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         });
       }
       });
+    }else{
+      //get all books
+    this.bookService.getAllBooks().subscribe((data:any)=>{
+      if(data!=null){
+        this.bList = data;
+        // console.log(typeof data);
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'There are no books in store!',
+        });
+      }
+    });
     }
+  }
+
+  ngAfterViewInit(): void {
+    
   }
 
  containsOnlyNumbers(input: string): boolean {
@@ -147,12 +149,6 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     });
   }
   }
-
-  
- 
-
- 
-
 }
 
 

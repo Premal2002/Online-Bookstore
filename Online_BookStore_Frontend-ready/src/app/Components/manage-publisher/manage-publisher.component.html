@@ -17,14 +17,14 @@
                                 <th scope="col">Publisher Name</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Operations</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor = "let pList of activePublisherList | paginate : {itemsPerPage : count,currentPage : p}" >
-                                <td> {{ pList.pId }} </td>
                                 <td> {{ pList.pName }} </td>
-                                <td> {{ pList.pCountry}} </td>
+                                <td> {{ pList.pCountry }} </td>
+                                <td> {{ pList.email}} </td>
                                 <td><button (click)="deactivatePublisher(pList.pId,pList.pName,pList.pCountry,pList.email,pList.password)" class="btn btn-danger btn-sm">Deactivate</button></td>
                             </tr>
                             
@@ -48,7 +48,7 @@
                                 <th scope="col">Publisher Name</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Operations</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
